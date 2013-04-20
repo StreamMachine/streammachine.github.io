@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>StreamMachine by StreamMachine</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="without-description">
+        <h1>StreamMachine</h1>
+        <p></p>
+        <p class="view"><a href="https://github.com/StreamMachine">View the Project on GitHub <small>StreamMachine</small></a></p>
+        <ul>
+          <li class="single"><a href="">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <p>StreamMachine is an open-source streaming audio server aimed at pushing 
+innovation for radio stations that have spent too many years running old 
+technology like Shoutcast and Icecast.</p>
+
+<p>The project has two goals: emulating the traditional streaming experience and 
+building support for new features that push the radio listening experience 
+forward.</p>
+
+<h2>The Rewind Buffer</h2>
+
+<p>StreamMachine's big idea is keeping a big buffer of audio data in memory, 
+allowing clients to connect to "nearly-live" radio. Because audio data is 
+relatively small, a station can easily keep hours of audio in memory.  For 
+instance, a 64k MP3 stream will store 8 hours of audio data in just a little 
+over 200MB of memory.</p>
+
+<p>Using the Rewind Buffer, players can add support for concepts like "Play 
+the current program from its start", or "Play the 9am broadcast." Unlike 
+podcasts, these functions are available immediately and keep the user connected 
+to the station's live stream.</p>
+
+<h2>Architecture</h2>
+
+<p>StreamMachine is a <a href="http://nodejs.org">Node.js</a> application.  It can run on one server, or in a 
+master-slave configuration for load-balancing. StreamMachine is designed for Node 0.10.</p>
+
+<h4>Configuration</h4>
+
+<p>Static configuration can be done via a JSON configuration file.  Configuration 
+changes will not be written back to the file. </p>
+
+<p>For a dynamic configuration, StreamMachine can store its stream information on 
+a <a href="http://redis.io">Redis</a> server.</p>
+
+<h4>Incoming Audio</h4>
+
+<p>Two modes are supported for incoming audio:</p>
+
+<ul>
+<li><p><strong>Icecast Source:</strong> The <code>SourceIn</code> module emulates the Icecast server's 
+source handling, allowing source clients to connect to a mount point and 
+provide a source password.</p></li>
+<li><p><strong>Proxy:</strong> The <code>ProxyRoom</code> module can connect to an existing Icecast server 
+and proxy its stream through the StreamMachine infrastructure.  </p></li>
+</ul><h4>Supported Formats</h4>
+
+<p>Currently, MP3 and AAC streams are supported. </p>
+
+<h2>Outputs</h2>
+
+<h4>Traditional</h4>
+
+<p>The <code>LiveMP3</code> and <code>Shoutcast</code> outputs provide traditional output streams.</p>
+
+<h4>New</h4>
+
+<p>The <code>Pumper</code> output allows a chunk of audio to be downloaded as quick as 
+possible.</p>
+
+<p>The <code>Sockets</code> output creates an audio stream that can seek through the Rewind
+Buffer without having to reconnect.</p>
+
+<h2>Who?</h2>
+
+<p>StreamMachine was developed by <a href="http://ewr.is">Eric Richardson</a> (<a href="mailto:e@ewr.is">e@ewr.is</a>) 
+while at <a href="http://scpr.org">Southern California Public Radio</a>.</p>
+      </section>
+    </div>
+    <footer>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
